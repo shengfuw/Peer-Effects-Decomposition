@@ -1,0 +1,90 @@
+====================================================
+Four-Way Decomposition of Mediation Effects:
+RATE
+        [,1]    [,2]    [,3] [,4]
+[1,] 0.18841 0.02641 7.13404    0
+[2,] 0.18992 0.02635 7.20759    0
+
+ RNDE
+        [,1]    [,2]    [,3] [,4]
+[1,] 0.17750 0.02631 6.74648    0
+[2,] 0.17523 0.02608 6.71894    0
+
+ CDE(0)
+        [,1]    [,2]    [,3] [,4]
+[1,] 0.20144 0.02768 7.27746    0
+[2,] 0.21276 0.02924 7.27633    0
+
+ RINT_ref
+         [,1]    [,2]     [,3]    [,4]
+[1,] -0.02394 0.01099 -2.17834 0.02938
+[2,] -0.03753 0.01541 -2.43543 0.01487
+
+ RNIE
+        [,1]    [,2]    [,3]    [,4]
+[1,] 0.01091 0.00403 2.70720 0.00679
+[2,] 0.01469 0.00479 3.06681 0.00216
+
+ RPIE
+        [,1]    [,2]    [,3]    [,4]
+[1,] 0.00540 0.00261 2.06897 0.03855
+[2,] 0.00892 0.00328 2.71951 0.00654
+
+ RINT_med
+        [,1]    [,2]    [,3]    [,4]
+[1,] 0.00551 0.00304 1.81250 0.06991
+[2,] 0.00577 0.00285 2.02456 0.04291
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Note: Table Columes = Est / SE / Z / P-value
+
+nmi =  30 
+Data:  sample_mi_friend_all 
+Observation =  8788 
+Variables: [1] Treatment | [2] Outcome | [3] Mediator 1 | [4] Mediator 2 | [5] Controls | [6] Peer-level controls | [7] Post-treatment controls 1 | [8] Post-treatment controls 2: 
+[1] "peer_treatment_mean"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+[2] "gpa_overall_2"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+[3] "educexp_want_1"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+[4] "educexp_likely_1"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+[5] "schid_2 + schid_3 + schid_4 + schid_5 + schid_6 + schid_7 + schid_8 + schid_9 + schid_10 + schid_11 + schid_12 + schid_13 + schid_14 + schid_15 + schid_16 + schid_17 + schid_18 + schid_19 + schid_20 + schid_21 + schid_22 + schid_23 + schid_24 + schid_25 + schid_26 + schid_27 + schid_28 + schid_29 + schid_30 + schid_31 + schid_32 + schid_33 + schid_34 + schid_35 + schid_36 + schid_37 + schid_38 + schid_39 + schid_40 + schid_41 + schid_42 + schid_43 + schid_44 + schid_45 + schid_46 + schid_47 + schid_48 + schid_49 + schid_50 + schid_51 + schid_52 + schid_53 + schid_54 + schid_55 + schid_56 + schid_57 + schid_58 + schid_59 + schid_60 + schid_61 + schid_62 + schid_63 + schid_64 + schid_65 + schid_66 + schid_67 + schid_68 + schid_69 + schid_70 + schid_71 + schid_72 + schid_73 + schid_74 + schid_75 + schid_76 + schid_77 + schid_78 + schid_79 + schid_80 + schid_81 + schid_82 + schid_83 + schid_84 + schid_85 + schid_86 + schid_87 + schid_88 + schid_89 + schid_90 + schid_91 + schid_92 + schid_93 + schid_94 + schid_95 + schid_96 + schid_97 + schid_98 + schid_99 + schid_100 + schid_101 + schid_102 + schid_103 + schid_104 + schid_105 + schid_106 + schid_107 + schid_108 + schid_109 + schid_110 + schid_111 + schid_112 + schid_113 + schid_114 + schid_115 + schid_116 + schid_117 + schid_118 + schid_119 + schid_120 + schid_121 + schid_122 + schid_123 + schid_124 + grade_8 + grade_9 + grade_10 + grade_11 + grade_12 + race_2 + race_3 + race_4 + immig_1 + immig_2 + family_2 + family_3 + family_4 + region_2 + region_3 + region_4 + pa_educ + assistance + sibsize + pvt + treatment_0 + n_peer + p_attachment_1 + s_attachment + family_income_ln_1 + fcesd_1 + club_n + skip_school_1 + hang_out_own_decision_1 + net_esrden + net_bcent10x + net_reach_ln"
+[6] "female_peermean + black_peermean + hispanic_peermean + other_peermean + immig_1st_peermean + immig_2nd_peermean + family_one_peermean + family_other_peermean + pa_educ_peermean"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+[7] "educexp_want_1_peermean"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+[8] "educexp_likely_1_peermean"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+====================================================
+Treatment on Mediators and Post-treatment Confounders:
+Mediator 1
+[1] 0.07343 0.02237 3.28252 0.00103
+
+ Mediator 2
+[1] 0.06798 0.01909 3.56103 0.00037
+
+ Post CV 1
+[1] 0.09651 0.01657 5.82438 0.00000
+
+ Post CV 2
+[1] 0.12462 0.01845 6.75447 0.00000
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Note: Table Columes = Est / SE / Z / P-value
+
+====================================================
+Outcome Model:
+Treatment
+        [,1]    [,2]    [,3] [,4]
+[1,] 0.10519 0.01533 6.86171    0
+[2,] 0.10402 0.01520 6.84342    0
+
+ Mediator
+        [,1]    [,2]    [,3] [,4]
+[1,] 0.06426 0.01262 5.09192    0
+[2,] 0.10082 0.01379 7.31109    0
+
+ Mediator x Treatment
+        [,1]    [,2]    [,3]    [,4]
+[1,] 0.02562 0.01174 2.18228 0.02909
+[2,] 0.02904 0.01192 2.43624 0.01484
+
+ Post CV
+        [,1] [,2] [,3] [,4]
+[1,] -0.0069   NA   NA   NA
+[2,] -0.0013   NA   NA   NA
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Note: Table Columes = Est / SE / Z / P-value

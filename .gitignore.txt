@@ -1,0 +1,6 @@
+*.dta
+*.RData
+*.Rhistory
+*.log
+.DS_Store
+data/

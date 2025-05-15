@@ -1,0 +1,90 @@
+====================================================
+Four-Way Decomposition of Mediation Effects:
+RATE
+        [,1]    [,2]     [,3] [,4]
+[1,] 0.29599 0.02430 12.18066    0
+[2,] 0.29706 0.02414 12.30572    0
+
+ RNDE
+        [,1]    [,2]     [,3] [,4]
+[1,] 0.28637 0.02437 11.75092    0
+[2,] 0.28507 0.02404 11.85815    0
+
+ CDE(0)
+        [,1]    [,2]     [,3] [,4]
+[1,] 0.31400 0.02565 12.24172    0
+[2,] 0.32308 0.02647 12.20552    0
+
+ RINT_ref
+         [,1]    [,2]     [,3]    [,4]
+[1,] -0.02762 0.01063 -2.59831 0.00937
+[2,] -0.03800 0.01480 -2.56757 0.01024
+
+ RNIE
+        [,1]    [,2]    [,3]    [,4]
+[1,] 0.00962 0.00374 2.57219 0.01011
+[2,] 0.01199 0.00435 2.75632 0.00585
+
+ RPIE
+        [,1]    [,2]    [,3]    [,4]
+[1,] 0.00435 0.00226 1.92478 0.05426
+[2,] 0.00719 0.00292 2.46233 0.01380
+
+ RINT_med
+        [,1]    [,2]   [,3]   [,4]
+[1,] 0.00526 0.00263 2.0000 0.0455
+[2,] 0.00480 0.00241 1.9917 0.0464
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Note: Table Columes = Est / SE / Z / P-value
+
+nmi =  30 
+Data:  sample_mi_friend_all 
+Observation =  8788 
+Variables: [1] Treatment | [2] Outcome | [3] Mediator 1 | [4] Mediator 2 | [5] Controls | [6] Peer-level controls | [7] Post-treatment controls 1 | [8] Post-treatment controls 2: 
+[1] "peer_treatment_mean"                                                                                                                                                                                                                                                                                                                                                                           
+[2] "gpa_overall_2"                                                                                                                                                                                                                                                                                                                                                                                 
+[3] "educexp_want_1"                                                                                                                                                                                                                                                                                                                                                                                
+[4] "educexp_likely_1"                                                                                                                                                                                                                                                                                                                                                                              
+[5] "grade_8 + grade_9 + grade_10 + grade_11 + grade_12 + race_2 + race_3 + race_4 + immig_1 + immig_2 + family_2 + family_3 + family_4 + region_2 + region_3 + region_4 + pa_educ + assistance + sibsize + pvt + treatment_0 + n_peer + p_attachment_1 + s_attachment + family_income_ln_1 + fcesd_1 + club_n + skip_school_1 + hang_out_own_decision_1 + net_esrden + net_bcent10x + net_reach_ln"
+[6] "female_peermean + black_peermean + hispanic_peermean + other_peermean + immig_1st_peermean + immig_2nd_peermean + family_one_peermean + family_other_peermean + pa_educ_peermean"                                                                                                                                                                                                              
+[7] "educexp_want_1_peermean"                                                                                                                                                                                                                                                                                                                                                                       
+[8] "educexp_likely_1_peermean"                                                                                                                                                                                                                                                                                                                                                                     
+====================================================
+Treatment on Mediators and Post-treatment Confounders:
+Mediator 1
+[1] 0.05937 0.02023 2.93475 0.00334
+
+ Mediator 2
+[1] 0.05512 0.01774 3.10710 0.00189
+
+ Post CV 1
+[1] 0.07616 0.01449 5.25604 0.00000
+
+ Post CV 2
+[1] 0.10051 0.01694 5.93329 0.00000
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Note: Table Columes = Est / SE / Z / P-value
+
+====================================================
+Outcome Model:
+Treatment
+        [,1]    [,2]     [,3] [,4]
+[1,] 0.16869 0.01417 11.90473    0
+[2,] 0.16796 0.01398 12.01431    0
+
+ Mediator
+        [,1]    [,2]    [,3] [,4]
+[1,] 0.06806 0.01281 5.31304    0
+[2,] 0.10099 0.01435 7.03763    0
+
+ Mediator x Treatment
+        [,1]    [,2]    [,3]    [,4]
+[1,] 0.03029 0.01166 2.59777 0.00938
+[2,] 0.02980 0.01164 2.56014 0.01046
+
+ Post CV
+         [,1]    [,2]     [,3]    [,4]
+[1,] -0.01585 0.01970 -0.80457 0.42107
+[2,] -0.00948 0.01495 -0.63411 0.52601
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Note: Table Columes = Est / SE / Z / P-value
