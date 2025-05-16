@@ -23,11 +23,11 @@ compute_estimate <- function(i, beta_mat, var_mat, nmi, d = 5) {
   return(est)
 }
 
-four_way_decompose = function(data_name, specified_vars, saved_data_add_name = "", nmediator = 2, nmi = 30, nboot = 1) {
+four_way_decompose = function(data_name, specified_vars, saved_data_suffix = "", nmediator = 2, nmi = 30, nboot = 500) {
   start <- Sys.time()
   
   # Set variables 
-  treatment = specified_vars[1]
+  treatment <- specified_vars[1]
   outcome <- specified_vars[2]
   mediator1 <- specified_vars[3]
   mediator2 <- specified_vars[4]
@@ -106,7 +106,7 @@ four_way_decompose = function(data_name, specified_vars, saved_data_add_name = "
     pc_mediator2 <- quantile(analytic_sample[[mediator2]], probs=c(0.25, 0.5, 0.75), na.rm=T)
     m_mediator1 <- pc_mediator1[2]
     m_mediator2 <- pc_mediator2[2]
-
+    
     
     # Fit Model 1: Mediator on treatment
     mediator1_on_treatment <- svyglm(as.formula(paste(mediator1, "~", treatment, "+", cv, "+", peercv)), data = analytic_sample, design = design)
@@ -206,17 +206,12 @@ four_way_decompose = function(data_name, specified_vars, saved_data_add_name = "
       design <- svydesign(data = analytic_sample.boot, ids = ~scid, weights = ~gswgt2)
       
       # Fit Model 1: Mediator on treatment
-      # mediator1_on_treatment.boot <- svyglm(as.formula(paste(mediator1, "~", treatment, "+", cv, "+", peercv)), data = analytic_sample.boot, design = design)
-      # mediator2_on_treatment.boot <- svyglm(as.formula(paste(mediator2, "~", treatment, "+", cv, "+", peercv)), data = analytic_sample.boot, design = design)
-      
-      mediator1_on_treatment.boot <- svyglm(as.formula(paste(mediator1, "~", treatment, "+", sub("scid \\+", "", cv), "+", peercv)), data = analytic_sample.boot, design = design)
-      mediator2_on_treatment.boot <- svyglm(as.formula(paste(mediator2, "~", treatment, "+", sub("scid \\+", "", cv), "+", peercv)), data = analytic_sample.boot, design = design)
+      mediator1_on_treatment.boot <- svyglm(as.formula(paste(mediator1, "~", treatment, "+", cv, "+", peercv)), data = analytic_sample.boot, design = design)
+      mediator2_on_treatment.boot <- svyglm(as.formula(paste(mediator2, "~", treatment, "+", cv, "+", peercv)), data = analytic_sample.boot, design = design)
       
       # RWR calculations for post-treatment confounder
-      # post_cv1_on_treatment.boot <- svyglm(as.formula(paste(post_cv1, "~", treatment, "+", cv, "+", peercv)), data = analytic_sample.boot, design = design)
-      # post_cv2_on_treatment.boot <- svyglm(as.formula(paste(post_cv2, "~", treatment, "+", cv, "+", peercv)), data = analytic_sample.boot, design = design)
-      post_cv1_on_treatment.boot <- svyglm(as.formula(paste(post_cv1, "~", treatment, "+", sub("scid \\+", "", cv), "+", peercv)), data = analytic_sample.boot, design = design)
-      post_cv2_on_treatment.boot <- svyglm(as.formula(paste(post_cv2, "~", treatment, "+", sub("scid \\+", "", cv), "+", peercv)), data = analytic_sample.boot, design = design)
+      post_cv1_on_treatment.boot <- svyglm(as.formula(paste(post_cv1, "~", treatment, "+", cv, "+", peercv)), data = analytic_sample.boot, design = design)
+      post_cv2_on_treatment.boot <- svyglm(as.formula(paste(post_cv2, "~", treatment, "+", cv, "+", peercv)), data = analytic_sample.boot, design = design)
       
       analytic_sample.boot$post_cv1_r <- residuals(post_cv1_on_treatment.boot)
       analytic_sample.boot$post_cv2_r <- residuals(post_cv2_on_treatment.boot)
@@ -226,6 +221,7 @@ four_way_decompose = function(data_name, specified_vars, saved_data_add_name = "
       outcome_model_mediator1.boot <- svyglm(as.formula(paste(outcome, "~", treatment, "+", mediator1, "+", mediator1_x_treatment, "+", cv, "+", peercv, "+", "post_cv1_r")), data = analytic_sample.boot, design = design)
       outcome_model_mediator2.boot <- svyglm(as.formula(paste(outcome, "~", treatment, "+", mediator2, "+", mediator2_x_treatment, "+", cv, "+", peercv, "+", "post_cv2_r")), data = analytic_sample.boot, design = design)
       
+      # Compute effects
       bootdist_cde[j, 1] <- (outcome_model_mediator1.boot$coef[treatment] + outcome_model_mediator1.boot$coef[mediator1_x_treatment] * m_mediator1) * (pc_treatment[2] - pc_treatment[1])
       bootdist_cde[j, 2] <- (outcome_model_mediator2.boot$coef[treatment] + outcome_model_mediator2.boot$coef[mediator2_x_treatment] * m_mediator2) * (pc_treatment[2] - pc_treatment[1])
       
@@ -246,13 +242,11 @@ four_way_decompose = function(data_name, specified_vars, saved_data_add_name = "
       
       bootdist_rate[j, 1] <- bootdist_rnde[j, 1] + bootdist_rnie[j, 1]
       bootdist_rate[j, 2] <- bootdist_rnde[j, 2] + bootdist_rnie[j, 2]
-      
         
       bootdist_mediator_on_treatment[j, 1] <- mediator1_on_treatment.boot$coef[treatment]
       bootdist_mediator_on_treatment[j, 2] <- mediator2_on_treatment.boot$coef[treatment]
       bootdist_mediator_on_treatment[j, 3] <- post_cv1_on_treatment.boot$coef[treatment]
       bootdist_mediator_on_treatment[j, 4] <- post_cv2_on_treatment.boot$coef[treatment]
-      
       
       bootdist_treatment[j, 1] <- outcome_model_mediator1.boot$coef[treatment]
       bootdist_treatment[j, 2] <- outcome_model_mediator2.boot$coef[treatment]
@@ -265,7 +259,6 @@ four_way_decompose = function(data_name, specified_vars, saved_data_add_name = "
       
       bootdist_post_cv[j, 1] <- outcome_model_mediator1.boot$coef["post_cv1_r"]
       bootdist_post_cv[j, 2] <- outcome_model_mediator2.boot$coef["post_cv2_r"]
-      
     }
     
     for (m in 1:2) { # 2: number of mediator
@@ -288,7 +281,6 @@ four_way_decompose = function(data_name, specified_vars, saved_data_add_name = "
     }
     
     
-    
   }
   
   # Combine MI estimates
@@ -301,7 +293,7 @@ four_way_decompose = function(data_name, specified_vars, saved_data_add_name = "
   rintmed_est <- matrix(data = NA, nrow = nmediator, ncol = 4)
   
   mediator_on_treatment_est <- matrix(data = NA, nrow = 4, ncol = 4)
-  
+
   treatment_est <- matrix(data = NA, nrow = nmediator, ncol = 4)
   mediator_est <- matrix(data = NA, nrow = nmediator, ncol = 4)
   mediator_x_treatment_est <- matrix(data = NA, nrow = nmediator, ncol = 4)
@@ -328,7 +320,7 @@ four_way_decompose = function(data_name, specified_vars, saved_data_add_name = "
   
   
   # Store results
-  sink( file.path(output_path, paste0("Table_mediation_", data_name, saved_data_add_name, "_", format(Sys.time(), "%m%d%H"), ".txt")))
+  sink( file.path(output_path, paste0("Table_mediation_", data_name, saved_data_suffix, "_", format(Sys.time(), "%m%d%H"), ".txt")))
   cat("====================================================\n")
   cat("Four-Way Decomposition of Mediation Effects:\n")
   cat("RATE\n")
@@ -408,7 +400,7 @@ specified_vars <- c(treatment, outcome, mediator1, mediator2, cv, peercv, post_c
 set.seed(123)
 
 
-# Peer type 1: Main analysis
+# Peer type 1: Main analysis (no schol FE)
 data_name <- "sample_mi_friend_all"
 four_way_decompose(data_name, specified_vars)
 
@@ -435,7 +427,6 @@ four_way_decompose(data_name, specified_vars)
 # Peer type 7
 data_name <- "sample_mi_friend_both"
 four_way_decompose(data_name, specified_vars)
-
 
 
 ############## Testing mediator measured at Wave II ##############
@@ -509,5 +500,5 @@ specified_vars <- c(treatment, outcome, mediator1, mediator2, cv, peercv, post_c
 set.seed(123)
 
 data_name <- "sample_mi_friend_all"
-four_way_decompose(data_name, specified_vars, saved_data_add_name = "_FE")
+four_way_decompose(data_name, specified_vars, saved_data_suffix = "_FE")
 
